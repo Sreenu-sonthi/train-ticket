@@ -24,9 +24,6 @@ jobs:
        - name: verify war file 
          run:  ls -lh target/
 
-
-
-
           
          
        

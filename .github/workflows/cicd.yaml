@@ -1,0 +1,81 @@
+
+name: Train Ticket Reservation CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # 1. Checkout source code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Setup Java
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      # 3. Check Java version
+      - name: Check Java Version
+        run: java -version
+
+      # 4. Check Maven version
+      - name: Check Maven Version
+        run: mvn -version
+
+      # 5. Compile with Maven
+      - name: Compile with Maven
+        run: mvn clean compile
+
+      # 6. Test with Maven
+      - name: Test with Maven
+        run: mvn test
+
+      # 7. Package with Maven
+      - name: Package with Maven
+        run: mvn package -DskipTests
+
+      # 8. Verify WAR file
+      - name: Verify WAR File
+        run: |
+          ls -lh target/
+          WAR_FILE=$(find target -maxdepth 1 -name "*.war" -type f | head -n 1)
+          if [ -z "$WAR_FILE" ]; then
+            echo "WAR file not found!"
+            exit 1
+          fi
+          echo "WAR file created: $WAR_FILE"
+
+      # 9. Deploy WAR to Tomcat
+      - name: Deploy to Tomcat
+        if: github.event_name != 'pull_request'
+        env:
+          TOMCAT_URL: ${{ secrets.TOMCAT_URL }}
+          TOMCAT_USER: ${{ secrets.TOMCAT_USER }}
+          TOMCAT_PASS: ${{ secrets.TOMCAT_PASS }}
+        run: |
+          WAR_FILE=$(find target -maxdepth 1 -name "*.war" -type f | head -n 1)
+
+          echo "Deploying $WAR_FILE to Tomcat"
+
+          curl --fail --show-error \
+            --user "$TOMCAT_USER:$TOMCAT_PASS" \
+            --upload-file "$WAR_FILE" \
+            "$TOMCAT_URL/manager/text/deploy?path=/train-ticket-reservation&update=true"
+
+          echo "Deployment successful!"

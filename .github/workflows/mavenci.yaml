@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       # 1. Checkout code
       - name: Checkout code
         uses: actions/checkout@v5
@@ -22,29 +23,50 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      # 3. Validate with Maven
+      # 3. Validate Maven
       - name: Validate with Maven
         run: mvn validate
 
-      # 4. Compile with Maven
+      # 4. Compile Java code
       - name: Compile with Maven
         run: mvn compile
 
-      # 5. Test with Maven
+      # 5. Test Java code
       - name: Test with Maven
         run: mvn test
 
-      # 6. Package with Maven
+      # 6. Build WAR file
       - name: Package with Maven
-        run: mvn package
+        run: mvn clean package -DskipTests
 
       # 7. Verify WAR file
       - name: Verify WAR file
-        run: ls -lh target/
+        run: |
+          echo "Checking WAR file..."
+          ls -lh target/
+          find target -maxdepth 1 -name "*.war"
 
       # 8. Deploy WAR to Tomcat
       - name: Deploy WAR to Tomcat
+        env:
+          TOMCAT_USER: ${{ secrets.TOMCAT_USER }}
+          TOMCAT_PASSWORD: ${{ secrets.TOMCAT_PASSWORD }}
+          TOMCAT_HOST: ${{ secrets.TOMCAT_HOST }}
+
         run: |
-          curl -v -u "${{ secrets.TOMCAT_USER }}:${{ secrets.TOMCAT_PASSWORD }}" \
-          -T target/Trainbook-1.0.0-SNAPSHOT.war \
-          "http://${{ secrets.TOMCAT_HOST }}:8080/manager/text/deploy?path=/TrainBook&update=true"
+          WAR_FILE=$(find target -maxdepth 1 -name "*.war" -type f | head -n 1)
+
+          if [ -z "$WAR_FILE" ]; then
+            echo "ERROR: WAR file not found!"
+            exit 1
+          fi
+
+          echo "WAR file found: $WAR_FILE"
+          echo "Deploying application to Tomcat..."
+
+          curl --fail --show-error -v \
+            -u "$TOMCAT_USER:$TOMCAT_PASSWORD" \
+            -T "$WAR_FILE" \
+            "http://$TOMCAT_HOST:8080/manager/text/deploy?path=/TrainBook&update=true"
+
+          echo "Tomcat deployment completed!"

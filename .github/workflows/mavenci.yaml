@@ -1,42 +1,50 @@
-name: ci pipeline to build java code 
+
+name: CI pipeline to build Java code
+
 on:
-   push:
-     branches: main
+  push:
+    branches:
+      - main
+
 jobs:
   build:
-     runs-on: ubuntu-latest
-     steps:
-       - name: checkout code
-         uses: actions/checkout@v5
-       - name: set-up jdk
-         uses: actions/setup-java@v5
-         with:
-            distribution: 'temurin'
-            java-version: '17'
-       - name: validate with maven 
-         run:  mvn validate
-       - name: compile with maven 
-         run:  mvn compile 
-       - name: test with maven 
-         run:  mvn test
-       - name: package with maven 
-         run:  mvn package
-       - name: verify war file 
-         run:  ls -lh target/
+    runs-on: ubuntu-latest
 
-         # deploy to Tomcat
-       - name: deploy war to tomcat
-         run: 
-                curl -v -u ${{ secrets.TOMCAT_USER }}:${{ secrets.TOMCAT_PASSWORD }} \
-                  -T target/Trainbook-1.0.0-SNAPSHOT.war \
-                  "http://${{ secrets.TOMCAT_HOST}}:8080/manager/text/deploy?path=/TrainBook&update=true"
+    steps:
+      # 1. Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v5
 
+      # 2. Setup JDK
+      - name: Setup JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '17'
 
+      # 3. Validate with Maven
+      - name: Validate with Maven
+        run: mvn validate
 
-                  
+      # 4. Compile with Maven
+      - name: Compile with Maven
+        run: mvn compile
 
+      # 5. Test with Maven
+      - name: Test with Maven
+        run: mvn test
 
+      # 6. Package with Maven
+      - name: Package with Maven
+        run: mvn package
 
+      # 7. Verify WAR file
+      - name: Verify WAR file
+        run: ls -lh target/
 
-                  
-      
+      # 8. Deploy WAR to Tomcat
+      - name: Deploy WAR to Tomcat
+        run: |
+          curl -v -u "${{ secrets.TOMCAT_USER }}:${{ secrets.TOMCAT_PASSWORD }}" \
+          -T target/Trainbook-1.0.0-SNAPSHOT.war \
+          "http://${{ secrets.TOMCAT_HOST }}:8080/manager/text/deploy?path=/TrainBook&update=true"

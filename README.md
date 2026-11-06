@@ -620,26 +620,26 @@ The pipeline reduces manual deployment work, improves release consistency, and p
 
 
 
-### 2. Login Page
+### 2. Screenshot of AMI used for different environment
 
 
 
-### 3. GitHub Actions Pipeline
+### 3. EC2 instance for different environments:
 
 
 
-### 4. Tomcat Deployment
+### 4. DEV-Environment deployment output:
 
 
 
-### 5. DEV Environment
+### 5. TEST-Environment deployment output:
 
 
 
-### 6. TEST Environment
+### 6. PRE-PROD-Environment deployment output:
 
 
 
-### 7. PROD Environment
+### 7. PROD-Environment deployment output:
 
 

@@ -609,7 +609,7 @@ The pipeline reduces manual deployment work, improves release consistency, and p
 
 ### 1. Application Homepage
 
-
+screenshots/Screenshot 2026-11-04 144308.png
 
 ### 2. Login Page
 

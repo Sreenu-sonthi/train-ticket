@@ -622,6 +622,7 @@ The pipeline reduces manual deployment work, improves release consistency, and p
 
 ### 2. Screenshot of AMI used for different environment
 
+<img width="1617" height="377" alt="Screenshot 2026-11-04 154851" src="https://github.com/user-attachments/assets/8d1abe67-59ee-4885-a8fd-143190485a2c" />
 
 
 ### 3. EC2 instance for different environments:

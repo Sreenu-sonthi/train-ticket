@@ -605,7 +605,36 @@ This project demonstrates an automated CI/CD pipeline for a Java-based Train-Tic
 
 Using Git, GitHub, Maven, GitHub Actions, Apache Tomcat 9, and AWS EC2, the application can be built and deployed independently across DEV, TEST, PRE-PROD, and PROD environments.
 
-The pipeline reduces manual deployment work, improves release consistency, and provides a controlled process for promoting application changes to production.
+The pipeline reduces manual deployment work, improves release consistency, and provides a controlled process for promoting application changes to production.## 📸 Project Screenshots
+
+### 1. Application Homepage
+
+
+
+### 2. Login Page
+
+
+
+### 3. GitHub Actions Pipeline
+
+
+
+### 4. Tomcat Deployment
+
+
+
+### 5. DEV Environment
+
+
+
+### 6. TEST Environment
+
+
+
+### 7. PROD Environment
+
+
+
 
 ## 20. Author
 

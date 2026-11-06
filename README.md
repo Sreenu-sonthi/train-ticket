@@ -638,7 +638,9 @@ The pipeline reduces manual deployment work, improves release consistency, and p
 
 
 ### 6. PRE-PROD-Environment deployment output:
+<img width="1916" height="871" alt="Screenshot 2026-11-04 155021 (1)" src="https://github.com/user-attachments/assets/ec2386c8-9606-4100-8a3c-1fb3c104bdb5" />
 
+<img width="1912" height="968" alt="Screenshot 2026-11-04 154100 (1)" src="https://github.com/user-attachments/assets/58bebd16-f32e-4bbb-b5f6-4e693b02ec86" />
 
 
 ### 7. PROD-Environment deployment output:

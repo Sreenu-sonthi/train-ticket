@@ -615,7 +615,7 @@ The pipeline reduces manual deployment work, improves release consistency, and p
 
 ## 📸 Project Screenshots
 
-### 1. Application Homepage
+### 1. EC2 instance
 <img width="1915" height="431" alt="Screenshot 2026-11-04 144308" src="https://github.com/user-attachments/assets/197c3837-864f-466a-a020-71c06468e175" />
 
 

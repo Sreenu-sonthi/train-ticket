@@ -618,16 +618,13 @@ The pipeline reduces manual deployment work, improves release consistency, and p
 ### 1. EC2 instance
 <img width="1915" height="431" alt="Screenshot 2026-11-04 144308" src="https://github.com/user-attachments/assets/197c3837-864f-466a-a020-71c06468e175" />
 
-
-
 ### 2. Screenshot of AMI used for different environment
 
 <img width="1617" height="377" alt="Screenshot 2026-11-04 154851" src="https://github.com/user-attachments/assets/8d1abe67-59ee-4885-a8fd-143190485a2c" />
 
-
 ### 3. EC2 instance for different environments:
 
-
+<img width="1622" height="372" alt="Screenshot 2026-11-04 154943" src="https://github.com/user-attachments/assets/7ebd86b1-838f-4da3-9b0a-3660608183da" />
 
 ### 4. DEV-Environment deployment output:
 

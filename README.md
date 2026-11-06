@@ -628,7 +628,9 @@ The pipeline reduces manual deployment work, improves release consistency, and p
 
 ### 4. DEV-Environment deployment output:
 
+<img width="1917" height="868" alt="Screenshot 2026-11-04 155115" src="https://github.com/user-attachments/assets/551cbf6f-19f0-4eb4-87ee-e39826f1fc96" />
 
+<img width="1917" height="962" alt="Screenshot 2026-11-04 154635" src="https://github.com/user-attachments/assets/c164d61d-6b26-49f6-b162-4a9c15a21ce4" />
 
 ### 5. TEST-Environment deployment output:
 

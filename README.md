@@ -634,16 +634,15 @@ The pipeline reduces manual deployment work, improves release consistency, and p
 
 ### 5. TEST-Environment deployment output:
 <img width="1917" height="876" alt="Screenshot 2026-11-04 155037" src="https://github.com/user-attachments/assets/f3fe6bb9-e179-46d9-88f4-b1acb63d9718" />
-
-
-
-### 6. PRE-PROD-Environment deployment output:
-<img width="1917" height="868" alt="Screenshot 2026-11-04 155115" src="https://github.com/user-attachments/assets/75a7d7a5-a197-4f01-adad-294f73849d06" />
-
-<img width="1917" height="962" alt="Screenshot 2026-11-04 154635" src="https://github.com/user-attachments/assets/328defb2-215d-4e10-87ff-ed6ed7b28e51" />
 <img width="1916" height="970" alt="Screenshot 2026-11-04 153359" src="https://github.com/user-attachments/assets/89eae5ef-c7d1-4e8b-9034-f00acede90b0" />
 
 
-### 7. PROD-Environment deployment output:
+### 6. PRE-PROD-Environment deployment output:
 
+
+
+### 7. PROD-Environment deployment output:
+<img width="1917" height="868" alt="Screenshot 2026-11-04 155115" src="https://github.com/user-attachments/assets/75a7d7a5-a197-4f01-adad-294f73849d06" />
+
+<img width="1917" height="962" alt="Screenshot 2026-11-04 154635" src="https://github.com/user-attachments/assets/328defb2-215d-4e10-87ff-ed6ed7b28e51" />
 

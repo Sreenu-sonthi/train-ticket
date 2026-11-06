@@ -51,4 +51,4 @@ jobs:
 
           curl -v -u "${{ secrets.TOMCAT_USER }}:${{ secrets.TOMCAT_PASSWORD }}" \
            -T target/TrainBook-1.0.0-SNAPSHOT.war \
-           "${{ secrets.TOMCAT_URL }}/manager/text/deploy?path=/TrainBook&update=true"
+           "${{ secrets.TOMCAT_HOST }}/manager/text/deploy?path=/TrainBook&update=true"

@@ -1,4 +1,3 @@
-
 name: ci pipeline to build java code and code quality by using sonarqube
 
 on:

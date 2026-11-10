@@ -5,8 +5,8 @@ on:
       - master
 jobs:
   build:
-    runs-on: ubuntu-latest
- steps:
+     runs-on: ubuntu-latest
+   steps:
       - name: checkout code
         uses: actions/checkout@v5
       - name: set-up jdk

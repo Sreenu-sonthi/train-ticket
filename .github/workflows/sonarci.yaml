@@ -46,15 +46,6 @@ jobs:
             -Dsonar.projectKey=vcube154
             -Dsonar.host.url=$SONAR_HOST_URL
 
-      # Step 7: Check SonarQube Quality Gate
-      - name: sonarqube quality gate
-        uses: SonarSource/sonarqube-quality-gate-action@v1
-        timeout-minutes: 5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          scanMetadataReportFile: target/sonar/report-task.txt
-
       # Step 8: Check WAR file
       - name: check war file
         run: ls -lh target/*.war

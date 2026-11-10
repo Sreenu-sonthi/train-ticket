@@ -32,5 +32,4 @@ jobs:
             -Dsonar.projectKey=vcube154
             -Dsonar.host.url=$SONAR_HOST_URL
           
-         
      

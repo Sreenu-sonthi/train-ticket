@@ -23,6 +23,14 @@ jobs:
             run: mvn package
           - name: verify war file
            run: ls -lh target/
+          - name: sonarqube code analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        run: |
+          mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.projectKey=vcube154
+            -Dsonar.host.url=$SONAR_HOST_URL
           
          
      

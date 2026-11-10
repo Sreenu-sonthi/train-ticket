@@ -39,7 +39,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: >
           mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-          -Dsonar.projectKey=train-ticket
+          -Dsonar.projectKey=vcube154
           -Dsonar.host.url=${SONAR_HOST_URL}
 
      

@@ -1,32 +1,61 @@
+
 name: ci pipeline to build java code and code quality by using sonarqube
+
 on:
   push:
     branches:
       - master
+
 jobs:
   build:
-     runs-on: ubuntu-latest
-   steps:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
       - name: checkout code
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      # Step 2: Set up JDK
       - name: set-up jdk
         uses: actions/setup-java@v5
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '17'
-      - name: validate with maven
-        run: mvn validate
-      - name: compile with maven
-        run: mvn compile
-      - name: test with maven
+          cache: maven
+
+      # Step 3: Build Java code
+      - name: maven build
+        run: mvn clean compile
+
+      # Step 4: Run test cases
+      - name: run test cases
         run: mvn test
-      - name: package with maven
+
+      # Step 5: Package application
+      - name: package application
         run: mvn package
+
+      # Step 6: SonarQube code analysis
       - name: sonarqube code analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
           mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -Dsonar.projectKey=vcube154
-            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.host.url=$SONAR_HOST_URL
 
+      # Step 7: Check SonarQube Quality Gate
+      - name: sonarqube quality gate
+        uses: SonarSource/sonarqube-quality-gate-action@v1
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          scanMetadataReportFile: target/sonar/report-task.txt
+
+      # Step 8: Check WAR file
+      - name: check war file
+        run: ls -lh target/*.war
